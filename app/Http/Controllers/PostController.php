@@ -45,6 +45,7 @@ class PostController extends Controller
            abort(403);
         }
         // dd($request->all());
+        try{
         $categories = [];
         $slugs = [];
         $fileName = "";
@@ -73,16 +74,21 @@ class PostController extends Controller
             $data = array_merge($req->all(), [ "status" => "Draft",'img_url'=>$fileName]);
         }
 
-        foreach($request->categories as $key=>$category){
+if($request->categories){
+    foreach($request->categories as $key=>$category){
             $categories []= [
                 'category_id' => $category
             ];
         }
-        foreach($request->slugs as $key=>$slug){
+}
+        if($request->slugs){
+            foreach($request->slugs as $key=>$slug){
             $slugs []= [
                 'slug_id' => $slug
             ];
         }
+        }
+        
 
 
 
@@ -94,13 +100,18 @@ class PostController extends Controller
                 $item['post_id'] = $post_id; // Menambahkan kolom 'post_id'
                 return $item;
             }, $categories);
-            DB::table('post_categories')->insert($post_category);
+            if(count($post_category) > 0){
+                DB::table('post_categories')->insert($post_category);
+            }
+            
 
             $post_slug = array_map(function($item) use($post_id) {
                 $item['post_id'] = $post_id; // Menambahkan kolom 'post_id'
                 return $item;
             }, $slugs);
+            if(count($post_slug) > 0){
             DB::table('post_slugs')->insert($post_slug);
+            }
             // $request->session()->flash('transaction.id', $transaction->id);
 
 
@@ -110,6 +121,11 @@ class PostController extends Controller
                 'url' =>$fileName
             ];
         GalleryImage::create($dataImage);
+        }
+    catch (\Exception $e) {
+        
+        return $e->getMessage();
+    }
 
         return redirect()->route('posts.index')->with(['success' => 'Data berhasil ditambahkan!']);
     }
@@ -176,17 +192,19 @@ class PostController extends Controller
             $data = array_merge($req->all(), [ "status" => "Draft",'img_url'=>$fileName]);
         }
 
+if($request->categories){
         foreach($request->categories as $key=>$category){
             $categories []= [
                 'category_id' => $category
             ];
-        }
+        }}
+        if($request->slugs){
         foreach($request->slugs as $key=>$slug){
             $slugs []= [
                 'slug_id' => $slug
             ];
         }
-
+}
 
 
         $post->update($data);
@@ -197,13 +215,17 @@ class PostController extends Controller
                 $item['post_id'] = $post_id; // Menambahkan kolom 'post_id'
                 return $item;
             }, $categories);
+            if(count($post_category) > 0){
             DB::table('post_categories')->insert($post_category);
+            }
 
             $post_slug = array_map(function($item) use($post_id) {
                 $item['post_id'] = $post_id; // Menambahkan kolom 'post_id'
                 return $item;
             }, $slugs);
+            if(count($post_slug) > 0){
             DB::table('post_slugs')->insert($post_slug);
+            }
             // $request->session()->flash('transaction.id', $transaction->id);
 
         return redirect()->route('posts.index')->with(['success' => 'Data berhasil dihapus!']);

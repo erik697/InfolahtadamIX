@@ -22,11 +22,28 @@
       @if (checkPermission('create_barang'))
       <a href="{{ route('products.create') }}" type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah</a>
       <a href="{{ route('products.importExcel') }}" type="submit" class="btn btn-info"><i class="fa fa-upload" aria-hidden="true"></i> Import</a>
-      <a href="{{ route('products.exportExcelProcess') }}" type="submit" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
+      <a href="{{ route('products.exportExcelProcess', ['status'=>$status]) }}" type="submit" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
                  @endif
     </div>
     <!-- /.box-header -->
     <div class="box-body">
+<div class="col-md-12">
+  <form method="GET" action="{{ route('products.index') }}">
+      <div class="box-body col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputName">Status</label>
+                <select class="form-control" name="status">
+                    <option value="">-- pilih Status --</option>
+                        <option value="B" @if($status === "B") selected @endif >B</option>
+                        <option value="RR" @if($status === "RR") selected @endif >RR</option>
+                        <option value="RB" @if($status === "RB") selected @endif >RB</option>
+                </select>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Cari</button>
+              </div>
+            </form>
+              </div>
+
       <table id="example1" class="table table-bordered table-striped " style="min-width: 100%">
         <thead>
         <tr>
@@ -44,7 +61,7 @@
         <tr>
             @foreach ($products as $key=>$item )
                  <td>{{ $key+1 }}</td>
-                <td>{{ $item->name}}</td>
+                <td>{{ $item->categoryProduct->parent->title }} {{ $item->name}}</td>
                 <td>{{ $item->categoryProduct->title }}</td>
                 <td>{{ $item->serial_number }}</td>
                 <td>{{ $item->wherehouse->title }}</td>

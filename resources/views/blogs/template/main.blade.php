@@ -24,7 +24,7 @@
     </head>
     <body>
       {{-- navbar start --}}
-        <nav class="fixed top-0 left-0 w-full shadow-2xl bg-white dark:bg-black dark:text-white ">
+        <nav class="fixed top-0 left-0 w-full shadow-2xl bg-white dark:bg-black dark:text-white z-50">
           <div class="px-5 py-4">
             <div class="lg:flex lg:w-full">
               <div class="lg:w-1/3  flex lg:justify-center items-center">

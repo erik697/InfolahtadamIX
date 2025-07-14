@@ -13,7 +13,7 @@
 @section('main')
 <div class="box">
     <div class="box-header">
-      @if (checkPermission('create_GalleryGambar'))
+      @if (checkPermission('create_galleryGambar'))
       <a href="{{ route('gallery-images.create') }}" type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah</a>
       @endif
     </div>
@@ -44,10 +44,10 @@
                 <td>{{ $item->description }}</td>
                 <td>
                 <div class="form-group" style="display: flex">
-                  @if (checkPermission('update_GalleryGambar'))
+                  @if (checkPermission('update_galleryGambar'))
                   <a href="{{ route('gallery-images.edit', $item->id) }}" type="submit" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                  @endif
-                @if (checkPermission('delete_GalleryGambar'))  
+                @if (checkPermission('delete_galleryGambar'))  
                 <form action="{{ route('gallery-images.destroy', $item->id) }}" style="padding-left: 10px" method="POST" onsubmit="return confirm('Yakin menghapus data ini ?')">
                                   @csrf
                                   @method('DELETE')

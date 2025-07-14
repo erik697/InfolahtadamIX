@@ -23,15 +23,26 @@ class ProductController extends Controller
         }
 
         if(checkPermission('kelola_barang_gudang')){
-        $products = Product::whereIn('wherehouse_id', userWherehouse())->orderBy('id','DESC')->get();
+            if($request->status){
+        $products = Product::whereIn('wherehouse_id', userWherehouse())->where('status', $request->status)->orderBy('id','DESC')->get();
+            }
+            else{
+                $products = Product::whereIn('wherehouse_id', userWherehouse())->orderBy('id','DESC')->get();
+            }
         }
         else{
-        $products = Product::orderBy('id','DESC')->get();
+            if($request->status){
+                $products = Product::orderBy('id','DESC')->where('status', $request->status)->get();
+            }
+            else{
+                $products = Product::orderBy('id','DESC')->get();
+            }
 
         }
 
         return view('product.index', [
             'products' => $products,
+            'status' => $request->status
         ]);
     }
 
@@ -173,6 +184,6 @@ class ProductController extends Controller
         if(!checkPermission('read_barang')){
            abort(403);
         }
-        return Excel::download(new ProductsExport, 'users.xlsx');
+        return Excel::download(new ProductsExport($request->status), 'users.xlsx');
     }
 }

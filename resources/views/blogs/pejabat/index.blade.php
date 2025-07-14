@@ -14,12 +14,12 @@
            
                 <div class="w-full">
                     <div class="p-4 border rounded-lg border-slate-200 shadow">
-                        <div class="px-10 h-52 mb-5 lg:h-56 overflow-hidden">
-                            <img class="rounded-lg object-fill lg:h-56 w-full" class="w-full h-52 lg:h-56" src="{{ asset('') }}/Personel/{{ $pejabat->img_url }}">
+                        <div class="px-10 mb-5 lg:h-56 overflow-hidden">
+                            <img class="rounded-lg object-fill lg:h-56 w-full" class="w-full lg:h-56" src="{{ asset('') }}/Personel/{{ $pejabat->img_url }}">
                         </div>
                             <p class="text-xl text-center">{{ $pejabat->name }}</p>
                             <p class="text-md text-slate-500 text-center">{{ $pejabat->position->name }}</p>
-                            <p class="text-sm text-slate-300 text-center">{{ $pejabat->period_start }} - {{ $pejabat->period_end }}</p>
+                            <p class="text-sm text-slate-300 text-center">{{ date("Y",strtotime($pejabat->period_start ))}} s/d {{ date("Y",strtotime($pejabat->period_end )) }}</p>
                     </div>
 
             </div>

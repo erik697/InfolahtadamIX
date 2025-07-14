@@ -14,7 +14,7 @@
 @section('main')
 <div class="box">
     <div class="box-header">
-      @if (checkPermission('create_kategoryBarang'))
+      @if (checkPermission('create_kategoriBarang'))
         <a href="{{ route('category-products.create') }}" type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah</a>
       @endif
 
@@ -44,10 +44,10 @@
                 <td>{{ $item->parent ? $item->parent->title : '' }}</td>
                 <td>
                 <div class="form-group" style="display: flex">
-                  @if (checkPermission('update_kategoryBarang'))
+                  @if (checkPermission('update_kategoriBarang'))
                   <a href="{{ route('category-products.edit', $item->id) }}" type="submit" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                   @endif
-                  @if (checkPermission('delete_kategoryBarang'))
+                  @if (checkPermission('delete_kategoriBarang'))
                     <form action="{{ route('category-products.destroy', $item->id) }}" style="padding-left: 10px" method="POST" onsubmit="return confirm('Yakin menghapus data ini ?')">
                                   @csrf
                                   @method('DELETE')

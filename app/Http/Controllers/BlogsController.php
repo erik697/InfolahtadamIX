@@ -17,6 +17,7 @@ class BlogsController extends Controller
 {
     
     public function index(){
+        
         $postsPersits = PersitPost::where('status', 'published')->get();
         $posts = Post::where('status', 'published')->get();
 

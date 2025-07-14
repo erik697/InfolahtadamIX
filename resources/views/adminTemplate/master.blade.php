@@ -136,7 +136,7 @@
                   {{-- <a href="#" class="btn btn-default btn-flat">Profile</a> --}}
                 </div>
                 <div class="pull-right">
-                   <form action="{{ route('login.logout') }}" method="POST" onsubmit="return confirm('Yakin menghapus data ini ?')">
+                   <form action="{{ route('login.logout') }}" method="POST" onsubmit="return confirm('Yakin anda akan keluar dari aplikasi ini ?')">
                                   @csrf
                                   <button type="submit" class="btn btn-default btn-flat"></i> Sign out</button>
                                 </form>
@@ -414,7 +414,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('AdminTemplate/dist/js/demo.js') }}"></script>
 
-<script>
+{{-- <script>
   $(function () {
     $('#example1').DataTable({
       'autoWidth'   : true,
@@ -429,7 +429,7 @@
       'autoWidth'   : false
     })
   })
-</script>
+</script> --}}
 <!-- Select2 -->
 <script src="{{ asset('AdminTemplate/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <!-- InputMask -->
@@ -467,6 +467,35 @@
 
 
   })
+
+  $(document).ready(function () {
+    // Setup - add a text input to each footer cell
+    $('#example1 tfoot th').each(function (i) {
+        var title = $('#example1 thead th')
+            .eq($(this).index())
+            .text();
+        $(this).html(
+            '<input type="text" placeholder="' + title + '" data-index="' + i + '" />'
+        );
+    });
+ 
+    // DataTable
+    var table = $('#example1').DataTable({
+        scrollY: '300px',
+        scrollX: true,
+        scrollCollapse: true,
+        paging: true,
+        fixedColumns: true
+    });
+ 
+    // Filter event handler
+    $(table.table().container()).on('keyup', 'tfoot input', function () {
+        table
+            .column($(this).data('index'))
+            .search(this.value)
+            .draw();
+    });
+});
 </script>
 </body>
 </html>

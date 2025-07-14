@@ -23,8 +23,8 @@
                             ></iframe> --}}
 
 
-
-  <video 
+<div class="w-full  h-dvh relative">
+ <video 
     autoplay 
     muted 
     loop 
@@ -32,18 +32,26 @@
     <source src="{{ asset('videos/playbackVideo.mp4') }}" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+  <div class="absolute w-dvw h-dvh top-0 right-0 z-20 flex justify-center items-center">
+                  <img src="{{ asset('images/logo_infolahta.png') }}" class="w-15 h-15 lg:w-40 lg:h-40" alt="">
+
+  </div>
+</div>
+
+<p class="mx-4 text-blue-500 underline"><a href="https://www.youtube.com/watch?v=ydEv5M_BfY8">Source Video</a></p>
+ 
         {{-- <img src="https://cdn.rri.co.id/berita/Bukittinggi/o/1716186125239-mountains-6531903_1280/iy78425lqqmlvt9.jpeg" class="w-full h-96 lg:h-full" alt="..."> --}}
       </div>
       {{-- image/video end --}}
 
       {{-- tentang start --}}
         <div class="my-24 lg:mx-32 lg:my-32">
-        <h3 class="text-center my-6 font-bold text-lg lg:text-2xl">SELAMAT DATANG DI SITUS RESMI INFOLAHTADAM IX</h3>
+        <h3 class="text-center my-6 font-bold text-lg lg:text-2xl">SELAMAT DATANG DI SITUS RESMI INFOLAHTADAM IX UDAYANA</h3>
         <div class="lg:flex flex-row-reverse">
             <img src="{{ asset('images/beranda.png') }}" width="100" alt="" class="w-full lg:w-1/2">
             <div class="w-full lg:w-1/2 my-10">
               <p class="mx-8">
-                Infolahtadam adalah singkatan dari "Informasi Pengolahan Data Kodam". Sejarah Infolahtadam berkaitan erat dengan sejarah perkembangan organisasi TNI AD, khususnya dalam bidang pengumpulan, pengolahan, dan penyajian data. Awalnya, Infolahtadam merupakan bagian dari organisasi yang lebih besar, yaitu Dinas Pengumpulan dan Pengolahan Data TNI AD (Disinfolahtad) yang dibentuk berdasarkan keputusan Kasad. Seiring waktu, organisasi ini mengalami perkembangan dan perubahan nama, termasuk menjadi Infolahta Kodam. 
+               Infolahtadam, atau Informasi dan Pengolahan Data Kodam, merupakan organisasi di tingkat Kodam yang bertugas mengumpulkan dan mengolah data. Sejarah Infolahtadam berkaitan erat dengan perkembangan organisasi pengumpul dan pengolah data di lingkungan TNI AD. Awalnya, embrio Infolahtadam adalah Paban V SUAD/RENLITBANG yang kemudian diresmikan menjadi Dinas Pengumpulan dan Pengolahan Data TNI AD (DISPULLAHTAD) pada tahun 1976. saat ini Dinas Informasi dan Pengolahan Data TNI AD (Disinfolahtad) Selanjutnya, organisasi ini berkembang di tingkat Kotama/Lakpus dengan nama Bapullahta Kotama/Lakpus, dan kemudian berubah menjadi Infolahta Kotama/Lakpus.
               </p>
             </div>
         </div>

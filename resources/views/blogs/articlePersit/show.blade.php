@@ -10,9 +10,9 @@
             </div>
         </div>
 
-        <div class="flex w-full pb-32">
-            <div class="w-3/4">
-                <div class="px-10">
+        <div class="lg:flex w-full pb-32">
+            <div class="w-full lg:w-3/4">
+                <div class="lg:px-10">
                     <h2 class="text-3xl font-semibold">{{ $postsPersit->title }}</h2>
                     <p class="text-slate-400 my-4 text-sm"><i class="fa-solid fa-eye"></i> View {{ $postsPersit->view + 1 }}</p>
                     <p class="text-left text-sm text-slate-400 my-4">ditulis oleh {{ $postsPersit->user->name }}</p>
@@ -26,7 +26,7 @@
                     <p class="my-10"><?php echo $postsPersit->content ?> </p>
                 </div>
             </div>
-            <div class="w-1/4">
+            <div class="w-full lg:w-1/4">
                 <div class="px-10 py-5">
                     @foreach ($postsPersits as $postsPersit )    
        
