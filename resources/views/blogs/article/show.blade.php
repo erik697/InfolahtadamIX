@@ -5,7 +5,7 @@
     <div class="mx-4 lg:mx-32">
 
         <div class=" bg-green-800 text-white my-4">
-            <div class="px-4 py-2">
+            <div class="px-4 py-2  text-center uppercase">
                 Berita > {{ $post->title }}
             </div>
         </div>

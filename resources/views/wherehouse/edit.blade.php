@@ -2,13 +2,13 @@
 @extends('adminTemplate.master')
 @section('uri')
       <h1>
-        Edit Gudang
-        <small>Gudang</small>
+        Edit Ruangan
+        <small>Ruangan</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa fa-folder"></i> Home</a></li>
         <li class="active">Dashboard</li>
-        <li class="active">Gudang</li>
+        <li class="active">Ruangan</li>
         <li class="active">Edit</li>
       </ol>
 @endsection
@@ -29,7 +29,7 @@
                 @csrf
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputName">Gudang</label>
+                  <label for="exampleInputName">Ruangan</label>
                   <input type="text" value="{{ $wherehouse->title }}" class="form-control" name="title" id="exampleInputName" placeholder="Masukan Kategori" required>
                   @error('title')
                     <div class="text-danger">{{ $message }}</div>

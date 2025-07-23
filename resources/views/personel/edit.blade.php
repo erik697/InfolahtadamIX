@@ -60,7 +60,7 @@
                   <label>Jabatan</label>
                   <select class="form-control" name="position_id">
                     @foreach ($positions as $position)
-                    <option value="{{ $position->id }}" @if($position->id === $personel->id) selected @endif>{{ $position->name }}</option>
+                    <option value="{{ $position->id }}" @if($position->id === $personel->position_id) selected @endif>{{ $position->name }}</option>
                     @endforeach
                   </select>
                   </select>

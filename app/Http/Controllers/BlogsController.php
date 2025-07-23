@@ -12,12 +12,15 @@ use App\Models\Personel;
 use App\Models\Post;
 use App\Models\Slug;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogsController extends Controller
 {
     
     public function index(){
-        
+        $visitor = DB::table('visitor_count')->first();
+        $visitor = DB::table('visitor_count')->where('id',1)->update(['count' => $visitor->count+1]);
+
         $postsPersits = PersitPost::where('status', 'published')->get();
         $posts = Post::where('status', 'published')->get();
 
@@ -31,6 +34,7 @@ class BlogsController extends Controller
         $slugsFilter = "";
         $selectedCategories = $request->categories? $request->categories : [];
         $selectedSlugs = $request->slugs? $request->slugs : [];
+        $title = $request->title? $request->title : "";
         $data =  Post::where('status', 'published');
         if($request->categories){
             $catFilter = Post::where('status', 'published')->join('post_categories', 'post_categories.post_id', '=','posts.id')->whereIn('category_id',$request->categories)->pluck('post_id');
@@ -41,6 +45,9 @@ class BlogsController extends Controller
             $slugsFilter = Post::where('status', 'published')->join('post_slugs', 'post_slugs.post_id', '=','posts.id')->whereIn('slug_id',$request->slugs)->pluck('post_id');
                 $data = $data->WhereIn('id', $slugsFilter);
 
+        }
+        if($request->title){
+            $data = $data->Where('id', $title);
         }
         
 
@@ -53,6 +60,7 @@ class BlogsController extends Controller
             'posts' => $posts,
             'categories' => $categories,
             'slugs' => $slugs,
+            'title' => $title,
             'selectedCategories' => $selectedCategories,
             'selectedSlugs' => $selectedSlugs,
             'postsHot' => $postsHot
@@ -104,7 +112,7 @@ class BlogsController extends Controller
     }
     public function organitation(){
         
-        $pejabats = Personel::where('status','Active')->get();
+        $pejabats = Personel::where('status','Active')->orderBy('position_id','ASC')->get();
         return view('blogs.profiles.organitation.index',['pejabats' => $pejabats]);
     }
     public function contact(){
@@ -116,6 +124,7 @@ class BlogsController extends Controller
         'name' => 'required|min:4',
         'email' => 'required',
         'message' => 'required|min:5',
+        'captcha' => 'required|captcha'
     ]);
 
         Feedback::create($validated);
@@ -138,5 +147,56 @@ class BlogsController extends Controller
     public function pejabat(){
         $pejabats = Personel::where('position_id', 1)->get();
         return view('blogs.pejabat.index',['pejabats' => $pejabats]);
+    }
+
+       public function sejarah(){
+        return view('blogs.sejarah.index');
+    }
+       public function kantor(){
+        return view('blogs.kantor.index');
+    }
+       public function kainfolahta(){
+        return view('blogs.kainfolahta.index');
+    }
+       public function pengaduan(){
+        return view('blogs.pengaduan.index');
+    }
+
+    // PPID
+       public function ppid(){
+        return view('blogs.ppid.index');
+    }
+       public function hakKewajiban(){
+        return view('blogs.ppid.hakkewajiban');
+    }
+       public function simpulLayanan(){
+        return view('blogs.ppid.simpulLayanan');
+    }
+       public function sopPelayanan(){
+        return view('blogs.ppid.sopPelayanan');
+    }
+       public function struktur(){
+        return view('blogs.ppid.struktur');
+    }
+       public function visiM(){
+        return view('blogs.ppid.visiM');
+    }
+       public function formInformasi(){
+        return view('blogs.ppid.formInformasi');
+    }
+       public function klaimKeberatan(){
+        return view('blogs.ppid.klaimKeberatan');
+    }
+       public function biayaSalinan(){
+        return view('blogs.ppid.biayaSalinan');
+    }
+    public function dasarHukum(){
+        return view('blogs.ppid.dasarHukum');
+    }
+    public function sangketaInformasi(){
+        return view('blogs.ppid.sangketaInformasi');
+    }
+    public function kosong(){
+        return view('blogs.ppid.kosong');
     }
 }

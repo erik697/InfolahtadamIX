@@ -1,66 +1,10 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<body class="hold-transition login-page">
-    <div class="login-box">
-      <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
-      </div>
-      <!-- /.login-logo -->
-      <div class="card">
-        <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
-    
-          <form action="{{ route('login.authenticate') }}" method="post">
-            @csrf
-            <div class="input-group mb-3">
-              <input type="email" name="email" class="form-control" placeholder="Email">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-envelope"></span>
-                </div>
-              </div>
-            </div>
-            <div class="input-group mb-3">
-              <input type="password" name="password" class="form-control" placeholder="Password">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-8">
-                <div class="icheck-primary">
-                  <input name="remember" value="remember" type="checkbox" id="remember">
-                  <label for="remember">
-                    Remember Me
-                  </label>
-                </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-4">
-                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-              </div>
-              <!-- /.col -->
-            </div>
-          </form>
-        </div>
-        <!-- /.login-card-body -->
-      </div>
-    </div>
-    <!-- /.login-box -->
-    
-    </body>
-    </html> --}}
-
 
     <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>Admin | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -73,6 +17,8 @@
   <link rel="stylesheet" href="{{ asset('AdminTemplate/dist/css/AdminLTE.min.css')}}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('AdminTemplate/plugins/iCheck/square/blue.css')}}">
+
+  <link rel="stylesheet" href="{{ asset('mycss/styles.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,22 +33,43 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Infolahtadam </b>IX</a>
+    <a href=""><b style="font-family: 'logoFont'; font-size: 16px;">INFOLAHTADAM IX/UDY</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <img src="{{ asset('images/logo_infolahta.png') }}" class="img-responsive center-block" width="100" alt="Centered Image">
+    <p class="login-box-msg">Sign in</p>
 
+    @if ($errors->has('email'))
+    <span class="text-danger">{{ $errors->first('email') }}</span>
+@endif
     <form action="{{ route('login.authenticate') }}" method="post">
             @csrf
+            
       <div class="form-group has-feedback">
-        <input type="email" name="email" class="form-control" placeholder="Email">
+        <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" placeholder="Password">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+
+      <div class="form-group">
+              <div class="captcha">
+                <span> {!! captcha_img() !!} </span>
+                <button type="button" class="btn btn-danger pull-right reload" id="reload">&#x21bb;</button>
+              </div>
+            </div>
+
+            <div class="form-group  mt-2">
+                <input type="text" class="form-control" name="captcha" placeholder="captcha">
+                @error('captcha')
+                  <label for="" class="text-danger">{{ $message }}</label>
+                  
+                @enderror
+            </div>
+
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
@@ -141,6 +108,16 @@
       increaseArea: '20%' /* optional */
     });
   });
+
+  $('#reload').click(function(){
+    $.ajax({
+      type:'GET',
+      url:'reload-captcha',
+      success:function(data){
+        $(".captcha span").html(data.captcha)
+      }
+    })
+  })
 </script>
 </body>
 </html>

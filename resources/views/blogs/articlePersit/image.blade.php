@@ -4,7 +4,7 @@
 <div class="min-h-full pt-32">
     <div class="mx-4 lg:mx-32">
         <div class=" bg-green-800 text-white my-4">
-            <div class="px-4 py-2">
+            <div class="px-4 py-2  text-center uppercase">
                 Gambar Persit
             </div>
         </div>
@@ -22,6 +22,7 @@
                          @else
                             <p class="text-xl">{{ $persitImage->title }}</p>
                          @endif
+                          <p class="text-sm mt-2">{{ $persitImage->description }}</p>
                     </div>
 
             </div>

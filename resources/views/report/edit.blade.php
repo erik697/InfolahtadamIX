@@ -33,6 +33,7 @@
 
 
                  <div class="form-group">
+                  <label for="exampleInputFile">Status</label>
                   <div class="radio">
                     <label>
                       <input type="radio" name="status" id="status1" value="B" checked>

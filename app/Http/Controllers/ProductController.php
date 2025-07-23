@@ -12,6 +12,7 @@ use App\Models\ProductLog;
 use App\Models\Wherehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -140,6 +141,7 @@ class ProductController extends Controller
         if(!checkPermission('delete_barang')){
            abort(403);
         }
+        DB::table('product_logs')->where('product_id',$product->id)->delete();
         $product->delete();
 
         return redirect()->route('products.index')->with(['success' => 'Data berhasil dihapus!']);

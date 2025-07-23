@@ -2,7 +2,7 @@
 @extends('adminTemplate.master')
 @section('uri')
    <h1>
-        Barang
+        {{ $product->name }}
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa fa-folder"></i> Home</a></li>
@@ -22,7 +22,7 @@
         <thead>
         <tr>
           <th>No</th>
-          <th>Gudang</th>
+          <th>Ruangan</th>
           <th>User</th>
           <th>Ket.</th>
           <th>Tgl.</th>
@@ -45,7 +45,7 @@
         <tfoot>
         <tr>
           <th>No</th>
-          <th>Gudang</th>
+          <th>Ruangan</th>
           <th>User</th>
           <th>Ket.</th>
           <th>Tgl.</th>

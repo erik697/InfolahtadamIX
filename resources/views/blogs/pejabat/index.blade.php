@@ -4,7 +4,7 @@
 <div class="min-h-full pt-32">
     <div class="mx-4 lg:mx-32">
         <div class=" bg-green-800 text-white my-4">
-            <div class="px-4 py-2">
+            <div class="px-4 py-2 text-center uppercase">
                 Pejabat
             </div>
         </div>
@@ -19,7 +19,7 @@
                         </div>
                             <p class="text-xl text-center">{{ $pejabat->name }}</p>
                             <p class="text-md text-slate-500 text-center">{{ $pejabat->position->name }}</p>
-                            <p class="text-sm text-slate-300 text-center">{{ date("Y",strtotime($pejabat->period_start ))}} s/d {{ date("Y",strtotime($pejabat->period_end )) }}</p>
+                            <p class="text-sm text-slate-300 text-center">{{ date("Y",strtotime($pejabat->period_start ))}} s/d {{ $pejabat->status === "Active" ? "Sekarang" : date("Y",strtotime($pejabat->period_end )) }}</p>
                     </div>
 
             </div>

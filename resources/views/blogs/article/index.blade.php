@@ -5,30 +5,37 @@
     <div class="mx-4 lg:mx-32">
 
         <form method="GET" action="{{ route('articles') }}">
-            <div class="">
-                <label for="">Kategori</label>
-                <select class="js-example-basic-multiple w-full" name="categories[]" multiple="multiple" data-placeholder="Pilih Kategori">
-                  @foreach ($categories as $category)
-                  <option value="{{ $category->id }}" @if(in_array($category->id,$selectedCategories))selected @endif >{{ $category->title }}</option>
-                  @endforeach
-                </select>
+            <div class="flex w-full">
+                <div class="w-1/2">
+                    <div class="mx-4">
+                        <label for="">Kategori</label>
+                        <select class="js-example-basic-multiple w-full" name="categories[]" multiple="multiple" data-placeholder="Pilih Kategori">
+                          @foreach ($categories as $category)
+                          <option value="{{ $category->id }}" @if(in_array($category->id,$selectedCategories))selected @endif >{{ $category->title }}</option>
+                          @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="mx-4">
+                        <label for="">Tags</label>
+                        <select class="js-example-basic-multiple w-full" name="slugs[]" multiple="multiple" data-placeholder="Pilih Tags">
+                          @foreach ($slugs as $slug)
+                          <option value="{{ $slug->id }}" @if(in_array($slug->id,$selectedSlugs))selected @endif >{{ $slug->title }}</option>
+                          @endforeach
+                        </select>
+                    </div>
+                </div>
+
             </div>
-            <div class="mt-4">
-                <label for="">Tags</label>
-                <select class="js-example-basic-multiple w-full" name="slugs[]" multiple="multiple" data-placeholder="Pilih Tags">
-                  @foreach ($slugs as $slug)
-                  <option value="{{ $slug->id }}" @if(in_array($slug->id,$selectedSlugs))selected @endif >{{ $slug->title }}</option>
-                  @endforeach
-                </select>
-            </div>
-            <div class="flex justify-end">
-                <button class="px-4 py-2 bg-blue-500 text-white rounded-2xl my-2">Filter</button>
-            </div>
+                            <div class="flex justify-end">
+                    <button class="px-4 py-2 bg-blue-500 text-white rounded-2xl my-2 cursor-pointer">Filter</button>
+                </div>
         </form>
 
         <div class=" bg-green-800 text-white my-4">
-            <div class="px-4 py-2">
-                Berita > 
+            <div class="px-4 py-2 text-center uppercase">
+                Berita
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 function checkPermission($permission){
     $userPermission = Auth::user()->role->rolePermission->pluck('permission.name')->toArray();
@@ -16,4 +16,9 @@ function checkPermission($permission){
 function userWherehouse(){
     $userWherehouse = Auth::user()->wherehouses->pluck('id')->toArray();
     return $userWherehouse;
+}
+
+function getCountVisitor(){
+    $visitor = DB::table('visitor_count')->first();
+    return $visitor;
 }

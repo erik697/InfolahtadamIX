@@ -2,12 +2,12 @@
 @extends('adminTemplate.master')
 @section('uri')
    <h1>
-        Gudang
+        Ruangan
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa fa-folder"></i> Home</a></li>
         <li class="active">Dashboard</li>
-        <li class="active">Gudang</li>
+        <li class="active">Ruangan</li>
       </ol>
 @endsection
 @section('main')
@@ -30,7 +30,7 @@
         <thead>
         <tr>
           <th>No</th>
-          <th>Gudang</th>
+          <th>Ruangan</th>
           <th>Pengelola</th>
           <th>Aksi</th>
         </tr>
@@ -65,7 +65,7 @@
         <tfoot>
         <tr>
           <th>No</th>
-          <th>Gudang</th>
+          <th>Ruangan</th>
           <th>Pengelola</th>
           <th>Aksi</th>
         </tr>

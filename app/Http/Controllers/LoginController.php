@@ -27,8 +27,9 @@ class LoginController extends Controller
     public function authenticate(Request $request): RedirectResponse
     {
         $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => 'required|email',
+            'password' => 'required',
+            'captcha' => 'required|captcha'
         ]);
         $remember = $request->remember ? true : false;
         // dd($request->all());
@@ -46,7 +47,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Email atau password salah.',
         ])->onlyInput('email');
     }
 
@@ -59,5 +60,9 @@ class LoginController extends Controller
     $request->session()->regenerateToken();
  
     return redirect('/');
+}
+
+public function reloadChaptcha(){
+    return response()->json(['captcha' => captcha_img()]);
 }
 }

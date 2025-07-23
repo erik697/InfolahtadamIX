@@ -1,0 +1,35 @@
+/* .navmenu {
+  animation: navmenuAnimation 1.0s;
+  animation-fill-mode: forwards;
+  
+}
+
+@keyframes navmenuAnimation {
+  0% { opacity: 0; bottom: -40px;  }
+  100% { opacity: 1; bottom: 0px;  }
+} */
+
+@font-face {
+    font-family: 'logoFont';
+    src: url('../myfont/MichelinBold.ttf');
+}
+@font-face {
+    font-family: 'udyFont';
+    src: url('../myfont/DaughterofFortune.ttf');
+}
+
+.flipLogo {
+  position: relative;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  animation: flipLogoanimate 4.0s;
+  animation-iteration-count: infinite;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+
+@keyframes flipLogoanimate {
+ 0% { transform: rotateY(0deg) }
+ 100% { transform: rotateY(360deg) }
+}

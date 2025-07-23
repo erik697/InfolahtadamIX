@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackupDbController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
@@ -9,11 +10,17 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+    // [your site path]/Http/routes.php
+// Route::get('/download-backup/{id}', [BackupDbController::class, 'download'])->name('backup.download');
+// Route::get('/backup-files', [BackupDbController::class, 'index'])->name('backup.index');
+// Route::post('/backup-add', [BackupDbController::class, 'add'])->name('backup.add');
 
 Route::get('/',[BlogsController::class, 'index'])->name('dashboards');
 Route::get('/articles',[BlogsController::class, 'article'])->name('articles');
@@ -29,7 +36,31 @@ Route::get('/persit-article/images',[BlogsController::class, 'imagesPersit'])->n
 Route::get('/persit-article/{id}',[BlogsController::class, 'articlePersitShow'])->name('persitArticle.show');
 Route::get('/pejabat',[BlogsController::class, 'pejabat'])->name('pejabat');
 
+Route::get('/kainfolahta',[BlogsController::class, 'kainfolahta'])->name('kainfolahta');
+Route::get('/kantor',[BlogsController::class, 'kantor'])->name('kantor');
+Route::get('/sejarah',[BlogsController::class, 'sejarah'])->name('sejarah');
+Route::get('/pengaduan',[BlogsController::class, 'pengaduan'])->name('pengaduan');
 
+Route::get('/ppid',[BlogsController::class, 'ppid'])->name('ppid.index');
+Route::get('/ppid/hak-kewajiban',[BlogsController::class, 'hakKewajiban'])->name('ppid.hak-kewajiban');
+Route::get('/ppid/simpul-layanan',[BlogsController::class, 'simpulLayanan'])->name('ppid.simpul-layanan');
+Route::get('/ppid/sop-pelayanan',[BlogsController::class, 'sopPelayanan'])->name('ppid.sop-pelayanan');
+Route::get('/ppid/struktur',[BlogsController::class, 'kosong'])->name('ppid.struktur');
+Route::get('/ppid/visiM',[BlogsController::class, 'visiM'])->name('ppid.visiM');
+Route::get('/ppid/form-informasi',[BlogsController::class, 'formInformasi'])->name('ppid.form-informasi');
+Route::get('/ppid/klaim-keberatan',[BlogsController::class, 'klaimKeberatan'])->name('ppid.klaim-keberatan');
+Route::get('/ppid/biaya-salinan',[BlogsController::class, 'biayaSalinan'])->name('ppid.biaya-salinan');
+Route::get('/ppid/dasar-hukum',[BlogsController::class, 'dasarHukum'])->name('ppid.dasar-hukum');
+Route::get('/ppid/sangketa-informasi',[BlogsController::class, 'sangketaInformasi'])->name('ppid.sangketa-informasi');
+
+Route::get('/ppid/informasi-berkala',[BlogsController::class, 'kosong'])->name('ppid.informasi-berkala');
+Route::get('/ppid/informasi-sertamerta',[BlogsController::class, 'kosong'])->name('ppid.informasi-sertamerta');
+Route::get('/ppid/informasi-setiaphari',[BlogsController::class, 'kosong'])->name('ppid.informasi-setiaphari');
+Route::get('/ppid/alur-proses',[BlogsController::class, 'kosong'])->name('ppid.alur-proses');
+Route::get('/ppid/operasional-pelayanan',[BlogsController::class, 'kosong'])->name('ppid.operasional-pelayanan');
+
+
+Route::get('/reload-captcha', [LoginController::class,'reloadChaptcha']);
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
 Route::post('/login/logout', [LoginController::class, 'logout'])->name('login.logout');
@@ -96,10 +127,6 @@ Route::resource('roles', App\Http\Controllers\RoleController::class);
 
 Route::resource('permissions', App\Http\Controllers\PermissionController::class);
 
-Route::resource('role-permissions', App\Http\Controllers\RolePermissionController::class);
-
-Route::resource('api-services', App\Http\Controllers\ApiServiceController::class);
-
 
 Route::resource('personels', App\Http\Controllers\PersonelController::class);
 
@@ -126,10 +153,6 @@ Route::resource('feedback', App\Http\Controllers\FeedbackController::class);
 Route::resource('roles', App\Http\Controllers\RoleController::class);
 
 Route::resource('permissions', App\Http\Controllers\PermissionController::class);
-
-Route::resource('role-permissions', App\Http\Controllers\RolePermissionController::class);
-
-Route::resource('api-services', App\Http\Controllers\ApiServiceController::class);
 
 Route::resource('users', UserController::class);
 

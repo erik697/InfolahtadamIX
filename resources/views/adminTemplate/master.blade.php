@@ -302,7 +302,7 @@
           </a>
           <ul class="treeview-menu">
           @if (checkPermission('read_gudang'))
-            <li class="{{ Str::startsWith(Route::currentRouteName(), 'wherehouses.') ? "active" : "" }}"><a href="{{ route('wherehouses.index') }}"><i class="fa fa-circle-o"></i> Gudang</a></li>
+            <li class="{{ Str::startsWith(Route::currentRouteName(), 'wherehouses.') ? "active" : "" }}"><a href="{{ route('wherehouses.index') }}"><i class="fa fa-circle-o"></i> Ruangan</a></li>
 
           @endif
           @if (checkPermission('read_barang'))

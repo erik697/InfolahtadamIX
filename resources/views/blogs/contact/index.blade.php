@@ -5,7 +5,7 @@
     <div class="mx-4 lg:mx-32">
 
           <div class=" bg-green-800 text-white my-4">
-            <div class="px-4 py-2">
+            <div class="px-4 py-2 text-center uppercase">
                 Contact 
             </div>
         </div>
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="w-full lg:flex flex-row mt-14 mb-32">
+        {{-- <div class="w-full lg:flex flex-row mt-14 mb-32">
             <div class="w-full lg:w-1/2">
                 <img src="{{ asset('images/contact.png') }}" class="w-full" alt="">
             </div>
@@ -72,6 +72,6 @@
 
             
            
-        </div>
+        </div> --}}
     </div>
 </div>

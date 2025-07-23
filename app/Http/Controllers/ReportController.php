@@ -68,7 +68,7 @@ class ReportController extends Controller
             'user_id'=>Auth::user()->id,
         'product_id'=>$product->id,
         'wherehouse_id'=>$product->wherehouse_id,
-        'description'=>"Status Barang Berubah menjadi  ".".Ket : ".$request->message,
+        'description'=>"Status Barang Berubah menjadi RR ".".Ket : ".$request->message,
         ];
         ProductLog::create($data2);
 
@@ -124,8 +124,8 @@ class ReportController extends Controller
                 }
 
         $data = [
-            'user_id'=>Auth::user()->id,
-        'status'=>"Done",
+        'user_id'=> $report->user_id,
+        'status'=>$request->status,
         'img_url'=>$fileName,
         ];
         Report::where('id', $report->id)->update($data);
@@ -134,7 +134,7 @@ class ReportController extends Controller
         'user_id'=>Auth::user()->id,
         'product_id'=>$product->id,
         'wherehouse_id'=>$product->wherehouse_id,
-        'description'=>"Status Barang Berubah menjadi  ".".Ket : ".$request->message,
+        'description'=>"Status Barang Berubah menjadi ".$request->status  .".Ket : ".$request->message,
         ];
         ProductLog::create($data2);
 
