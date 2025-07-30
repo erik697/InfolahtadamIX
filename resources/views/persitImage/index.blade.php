@@ -40,7 +40,7 @@
         <tr>
             @foreach ($persitImages as $key=>$item )
                  <td>{{ $key+1 }}</td>
-                <td><img src="postPersitImage/{{ $item->url }}" width="100" alt=""></td>
+                <td><img src="ImagePersitPost/{{ $item->url }}" width="100" alt=""></td>
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->description }}</td>
                 <td>

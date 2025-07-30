@@ -22,12 +22,12 @@
       @if (checkPermission('create_barang'))
       <a href="{{ route('products.create') }}" type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah</a>
       <a href="{{ route('products.importExcel') }}" type="submit" class="btn btn-info"><i class="fa fa-upload" aria-hidden="true"></i> Import</a>
-      <a href="{{ route('products.exportExcelProcess', ['status'=>$status]) }}" type="submit" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
+     <a href="{{ route('products.exportExcelProcess', ['status'=>$status]) }}" type="submit" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
                  @endif
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-<div class="col-md-12">
+        <div class="col-md-12">
   <form method="GET" action="{{ route('products.index') }}">
       <div class="box-body col-md-6">
                 <div class="form-group">
@@ -43,7 +43,6 @@
               </div>
             </form>
               </div>
-
       <table id="example1" class="table table-bordered table-striped " style="min-width: 100%">
         <thead>
         <tr>
@@ -51,7 +50,7 @@
           <th>Nama</th>
           <th>Kategori</th>
           <th>Serial Number</th>
-          <th>Gudang</th>
+          <th>Ruangan</th>
           <th>Status</th>
           <th>Keterangan</th>
           <th>Aksi</th>
@@ -61,8 +60,8 @@
         <tr>
             @foreach ($products as $key=>$item )
                  <td>{{ $key+1 }}</td>
-                <td>{{ $item->categoryProduct->parent->title }} {{ $item->name}}</td>
-                <td>{{ $item->categoryProduct->title }}</td>
+                <td>{{ $item->name}}</td>
+                <td>{{ $item->categoryProduct->parent->title }} {{ $item->categoryProduct->title }}</td>
                 <td>{{ $item->serial_number }}</td>
                 <td>{{ $item->wherehouse->title }}</td>
                 <td>
@@ -104,7 +103,7 @@
           <th>Nama</th>
           <th>Kategori</th>
           <th>Serial Number</th>
-          <th>Gudang</th>
+          <th>Ruangan</th>
           <th>Status</th>
           <th>Keterangan</th>
           <th>Aksi</th>

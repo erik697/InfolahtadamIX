@@ -46,9 +46,9 @@
                  <td><img src="{{ asset('') }}/postImage/{{ $item->img_url }}" width="100" alt=""></td>
                 <td>
                 <div class="form-group" style="display: flex">
-                  @if (checkPermission('update_report'))
+                  @if (checkPermission('update_report') && $item->status == "Pending")
                   
-                  <a href="{{ route('reports.edit', $item->id) }}" type="submit" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                  <a href="{{ route('reports.edit', $item->id) }}" type="submit" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Tindakan</a>
                  @endif
                 @if (checkPermission('delete_report'))   
                 <form action="{{ route('reports.destroy', $item->id) }}" style="padding-left: 10px" method="POST" onsubmit="return confirm('Yakin menghapus data ini ?')">

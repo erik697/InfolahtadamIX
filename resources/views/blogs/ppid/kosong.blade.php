@@ -1,7 +1,7 @@
 @extends('blogs.template.ppidT')
 @section('title', 'Infolahtadam IX')
 @section('content')
-<div class="min-h-full pt-32">
+<div class="min-h-full pt-20">
     <div class="mx-4 lg:mx-32">
 
 {{-- <div class=" bg-green-800 text-white my-4">

@@ -38,7 +38,7 @@
               </div>
 
                            <div class="form-group">
-                  <label for="exampleInputName">Pesan</label>
+                  <label for="exampleInputName">kendala</label>
                   <textarea name="message" class="form-control" id="" cols="30" rows="10"></textarea>
                    @error('message')
                     <div class="text-danger">{{ $message }}</div>

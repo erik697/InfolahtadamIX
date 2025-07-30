@@ -13,9 +13,19 @@
     font-family: 'logoFont';
     src: url('../myfont/MichelinBold.ttf');
 }
+
 @font-face {
     font-family: 'udyFont';
     src: url('../myfont/DaughterofFortune.ttf');
+}
+
+@font-face {
+    font-family: 'sansNewFont';
+    src: url('../myfont/Roboto-Regular.ttf');
+}
+
+body{
+font-family : 'sansNewFont'
 }
 
 .flipLogo {
@@ -32,4 +42,57 @@
 @keyframes flipLogoanimate {
  0% { transform: rotateY(0deg) }
  100% { transform: rotateY(360deg) }
+}
+
+.strokeme {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+
+.wave-container {  
+  height: 110vh;
+  background-color: #20B2AA;
+  position: relative;
+}
+
+.wave-container::before {   
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -0.3%;
+  left: 0;
+  background-size: auto;
+  background-repeat: repeat no-repeat;
+  background-position: 33vw bottom;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1200  80' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 59L50 55C100 51 200 44 300 30C400 15 500 -6 600 1C700 8 800 44 900 59C1000 73 1100 66 1150 62L1200 59V80H1150C1100 80 1000 80 900 80C800 80 700 80 600 80C500 80 400 80 300 80C200 80 100 80 50 80H0V59Z' fill='%23ffffff'/></svg>");
+}
+
+@media(max-width:850px) {
+  .wave-container::before {    
+    height: 450px
+  }  
+}
+
+/* footer */
+.custom-shape-divider-bottom-1753579382 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1753579382 svg {
+    position: relative;
+    display: block;
+    width: calc(134% + 1.3px);
+    height: 78px;
+}
+
+.custom-shape-divider-bottom-1753579382 .shape-fill {
+    fill: #000000;
 }

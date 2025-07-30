@@ -12,8 +12,8 @@ use App\Models\ProductLog;
 use App\Models\Wherehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -23,7 +23,7 @@ class ProductController extends Controller
            abort(403);
         }
 
-        if(checkPermission('kelola_barang_gudang')){
+         if(checkPermission('kelola_barang_gudang')){
             if($request->status){
         $products = Product::whereIn('wherehouse_id', userWherehouse())->where('status', $request->status)->orderBy('id','DESC')->get();
             }
@@ -142,6 +142,7 @@ class ProductController extends Controller
            abort(403);
         }
         DB::table('product_logs')->where('product_id',$product->id)->delete();
+        
         $product->delete();
 
         return redirect()->route('products.index')->with(['success' => 'Data berhasil dihapus!']);
@@ -160,6 +161,7 @@ class ProductController extends Controller
         if(!checkPermission('create_barang')){
            abort(403);
         }
+        
         	// menangkap file excel
 		$file = $request->file('excel');
  
@@ -168,10 +170,19 @@ class ProductController extends Controller
  
 		// upload ke folder file_siswa di dalam folder public
 		$file->move('importFile',$nama_file);
- 
+
 		// import data
-		Excel::import(new ProductsImport, public_path('/importFile/'.$nama_file));
-                
+		
+		try {
+
+  Excel::import(new ProductsImport, 'importFile/'.$nama_file);
+
+} catch (\Exception $e) {
+
+    return $e->getMessage();
+}
+		
+                // dd($request->file('excel')); 
         return redirect()->route('products.index')->with(['success' => 'Data berhasil diimport!']);
 
     }

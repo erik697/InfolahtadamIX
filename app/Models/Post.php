@@ -21,7 +21,8 @@ class Post extends Model
         'status',
         'user_id',
         'img_url',
-        'view'
+        'view',
+        'published_at'
     ];
 
     /**
@@ -34,7 +35,7 @@ class Post extends Model
         return [
             'id' => 'integer',
             'user_id' => 'integer',
-            'published_at' => 'timestamp',
+            // 'published_at' => 'timestamp',
             'deleted_at' => 'timestamp',
         ];
     }

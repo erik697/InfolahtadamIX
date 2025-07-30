@@ -26,7 +26,7 @@
                 @csrf
               <div class="box-body">
                   
-                <img src="{{ asset('') }}/Gallery/Images/{{ $galleryImage->url }}" width="100" height="100" alt="">
+                <img src="{{ asset('') }}/postImage/{{ $galleryImage->url }}" width="100" height="100" alt="">
                 <input type="hidden" name="img_url_old" value="{{ $galleryImage->url }}">
                   <div class="form-group">
                       <label for="exampleInputFile">Gambar</label>

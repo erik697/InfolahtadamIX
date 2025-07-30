@@ -33,7 +33,7 @@
 
 
                  <div class="form-group">
-                  <label for="exampleInputFile">Status</label>
+                <label for="exampleInputFile">Status</label>
                   <div class="radio">
                     <label>
                       <input type="radio" name="status" id="status1" value="B" checked>
@@ -49,8 +49,8 @@
                 </div>
                     
                 <div class="form-group">
-                  <label for="exampleInputName">Pesan</label>
-                  <textarea name="message" class="form-control" id="" cols="30" rows="10">{{ $report->message }}</textarea>
+                  <label for="exampleInputName">tindakan</label>
+                  <textarea name="message" class="form-control" id="" cols="30" rows="10"></textarea>
                    @error('message')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror 

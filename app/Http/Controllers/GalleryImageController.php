@@ -92,7 +92,7 @@ class GalleryImageController extends Controller
         // dd($file);
         // dd($request->img_url_old);
              if($file){
-            $fileName = $request->img_url_old;
+            $fileName = "ImageGallery".date('Y-m-d-H-i-s').".".$file->extension();
             $fileSize = $file->getSize();
             $fileExtention = $file->extension();
 		     $tujuan_upload = 'postImage';

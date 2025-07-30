@@ -29,7 +29,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputName">Ruangan</label>
-                  <input type="text" class="form-control" name="title" id="exampleInputName" placeholder="Masukan Kategori" required>
+                  <input type="text" class="form-control" name="title" id="exampleInputName" placeholder="Masukan nama ruangan" required>
                   @error('title')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror 

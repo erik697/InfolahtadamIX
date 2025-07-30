@@ -170,7 +170,7 @@ if($request->categories){
         $req= $request;
         $file = $request->img_url;
              if($file){
-             $fileName = $request->img_url_old != "" ? $request->img_url_old : "ImagePost".date('Y-m-d-H-i-s').".".$file->extension();
+             $fileName = "ImagePost".date('Y-m-d-H-i-s').".".$file->extension();
             $fileSize = $file->getSize();
             $fileExtention = $file->extension();
 		    $tujuan_upload = 'postImage';

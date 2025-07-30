@@ -1,7 +1,7 @@
 @extends('blogs.template.ppidT')
 @section('title', 'Infolahtadam IX')
 @section('content')
-<div class="min-h-full pt-32">
+<div class="min-h-full pt-20">
     <div class="mx-4 lg:mx-32">
 
 <div class=" bg-green-800 text-white my-4">
@@ -11,8 +11,12 @@
         </div>
       {{-- tentang start --}}
         <div class="my-24 lg:mx-32 lg:my-32">
-        <h3 class="text-center my-6 font-bold text-lg lg:text-2xl">SOP Pelayanan</h3>
-            <div class="w-full my-10">
+            <div class=" text-white my-4">
+            <div class="px-4 bg-green-800  py-2 text-center uppercase">
+                SOP Pelayanan
+            </div>
+        </div>
+                   <div class="w-full my-10">
                 <div class="mx-8 text-justify lg:text-lg">
                     <p >
                      STANDART OPERASIONAL PELAYANAN PUBLIK PPID TNI AD

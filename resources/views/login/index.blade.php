@@ -2,104 +2,84 @@
     <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin | Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{ asset('AdminTemplate/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('AdminTemplate/bower_components/font-awesome/css/font-awesome.min.css')}}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ asset('AdminTemplate/bower_components/Ionicons/css/ionicons.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('AdminTemplate/dist/css/AdminLTE.min.css')}}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('AdminTemplate/plugins/iCheck/square/blue.css')}}">
 
-  <link rel="stylesheet" href="{{ asset('mycss/styles.css') }}">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href=""><b style="font-family: 'logoFont'; font-size: 16px;">INFOLAHTADAM IX/UDY</b></a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <img src="{{ asset('images/logo_infolahta.png') }}" class="img-responsive center-block" width="100" alt="Centered Image">
-    <p class="login-box-msg">Sign in</p>
-
-    @if ($errors->has('email'))
-    <span class="text-danger">{{ $errors->first('email') }}</span>
-@endif
-    <form action="{{ route('login.authenticate') }}" method="post">
-            @csrf
-            
-      <div class="form-group has-feedback">
-        <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" required>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+<body>
+  
+<div class="min-h-dvh w-dvw flex items-center justify-center">
+  <div class="w-full mx-5 lg:mx-5 lg:w-3/4 lg:flex border border-slate-200 rounded-lg shadow-2xl">
+      <div class="w-full lg:w-1/2">
+      <img src="{{ asset('images/ppid.jpeg') }}" class="w-full h-full lg:rounded-l-lg" alt="">
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" placeholder="Password" required>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
+      <div class="w-full lg:w-1/2">
 
-      <div class="form-group">
-              <div class="captcha">
-                <span> {!! captcha_img() !!} </span>
-                <button type="button" class="btn btn-danger pull-right reload" id="reload">&#x21bb;</button>
+        <div class="w-full flex items-center justify-center">
+          <img src="{{ asset('images/logo_inloahtanew2.png') }}" class="w-20 h-20 pt-5" width="100" alt="Centered Image">
+        </div>
+      <h2 class="text-xl font-bold text-center pb-5">INFOLAHTADAM IX/UDY</h2>
+      <div class="p-5 lg:p-10">
+        <form action="{{ route('login.authenticate') }}" method="post">
+             @csrf
+              
+              <div class="w-full">
+                <label for="" class="font-semibold uppercase">Username</label>
+                <input type="email" name="email" value="{{ old('email') }}" class="border focus:outline-emerald-400 border-slate-200 w-full p-2" placeholder="Email" required>
+                @error('email')
+                          <label for="" class="text-red-500">{{ $message }}</label>
+                          
+                        @enderror
               </div>
-            </div>
-
-            <div class="form-group  mt-2">
-                <input type="text" class="form-control" name="captcha" placeholder="captcha">
-                @error('captcha')
-                  <label for="" class="text-danger">{{ $message }}</label>
-                  
-                @enderror
-            </div>
-
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input name="remember" value="remember" type="checkbox"> Remember Me
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-        <!-- /.col -->
+              <div class="w-full mt-4">
+                <label for="" class="font-semibold uppercase">Password</label>
+                <input type="password" name="password" class="border focus:outline-emerald-400 border-slate-200 w-full p-2" placeholder="Password" required>
+              </div>
+  
+              <div class="w-full mt-4">
+                      <div class="captcha flex">
+                        <span class="w-5/6 bg-slate-200"> {!! captcha_img() !!} </span>
+                        <button type="button" class="bg-slate-300 reload w-1/6 cursor-pointer" id="reload">&#x21bb;</button>
+                      </div>
+                    </div>
+  
+                    <div class="w-full mt-2">
+                        <input type="text" class="border focus:outline-emerald-400 border-slate-200 w-full p-2" name="captcha" placeholder="captcha">
+                        @error('captcha')
+                          <label for="" class="text-red-500">{{ $message }}</label>
+                          
+                        @enderror
+                    </div>
+  
+                    <div class="w-full flex mt-7">
+                      <div class=" w-1/2">
+                        <label>
+                          <input name="remember" value="remember" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer " type="checkbox"> Remember Me
+                        </label>
+                      </div>
+                  <!-- /.col -->
+                  <div class="w-1/2 flex items-end justify-end">
+                    <button type="submit" class="bg-sky-500 text-white font-bold px-10 py-2 cursor-pointer">Sign In</button>
+                  </div>
+                    </div>
+  
+        </form>
       </div>
-    </form>
-
-    {{-- <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a> --}}
-
+      </div>
   </div>
-  <!-- /.login-box-body -->
 </div>
-<!-- /.login-box -->
 
 <!-- jQuery 3 -->
 <script src="{{ asset('AdminTemplate/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('AdminTemplate/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+{{-- <script src="{{ asset('AdminTemplate/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> --}}
 <!-- iCheck -->
-<script src="{{ asset('AdminTemplate/plugins/iCheck/icheck.min.js')}}"></script>
+{{-- <script src="{{ asset('AdminTemplate/plugins/iCheck/icheck.min.js')}}"></script> --}}
 <script>
   $(function () {
     $('input').iCheck({
@@ -119,5 +99,11 @@
     })
   })
 </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <script>
+    AOS.init();
+  </script>
+    </body>
+</html>
 </body>
 </html>

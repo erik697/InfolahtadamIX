@@ -50,6 +50,6 @@ class Product extends Model
         return $this->belongsTo(Wherehouse::class);
     }
     public function productLogs(){
-        return $this->hasMany(ProductLog::class);
+        return $this->hasMany(ProductLog::class)->orderBy('id','DESC');;
     }
 }

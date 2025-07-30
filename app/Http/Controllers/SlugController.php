@@ -47,7 +47,7 @@ class SlugController extends Controller
 
     public function edit(Request $request, Slug $slug)
     {
-        if(!checkPermission('tags_tags')){
+        if(!checkPermission('update_tags')){
            abort(403);
         }
         return view('slug.edit', [
@@ -57,7 +57,7 @@ class SlugController extends Controller
 
     public function update(SlugUpdateRequest $request, Slug $slug)
     {
-        if(!checkPermission('tags_tags')){
+        if(!checkPermission('update_tags')){
            abort(403);
         }
         $slug->update($request->validated());

@@ -122,7 +122,6 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-    Ladumor\LaravelPwa\PWAServiceProvider::class,
 
     'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
 

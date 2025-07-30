@@ -69,9 +69,9 @@
 
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputName">Gudang</label>
+                  <label for="exampleInputName">Ruangan</label>
                 <select class="form-control" name="wherehouse_id">
-                    <option value="">-- pilih Gudang --</option>
+                    <option value="">-- pilih Ruangan --</option>
                     @foreach ($wherehouses as $wherehouse)
                         <option value="{{ $wherehouse->id }}">{{ $wherehouse->title }}</option>
                     @endforeach

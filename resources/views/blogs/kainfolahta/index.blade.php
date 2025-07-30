@@ -5,13 +5,17 @@
       {{-- tentang start --}}
         <div class="my-24 lg:mx-32 lg:my-32">
         <h3 class="text-center my-6 font-bold text-lg lg:text-2xl">Kolonel Inf Adi Sabarudin, S.Sos</h3>
-        <div class="lg:flex flex-row-reverse">
-            <img src="{{ asset('ka/1.png') }}" width="100" alt="" class="w-full lg:w-1/3">
+        <div class="lg:flex flex-row-reverse mx-8 border border-slate-200 shadow-2xl rounded">
+            <div class="w-full lg:w-1/3">
+                <div class="m-8">
+                    <img src="{{ asset('ka/1.png') }}" width="100" alt="" class="w-full" data-aos="flip-right">
+                </div>
+            </div>
             <div class="w-full lg:w-2/3 my-10">
               <p class="mx-8 text-justify lg:text-lg">
-               Kainfolahtadam IX, Kolonel Inf Adi Sabarudin, S.Sos lahir pada 7 September 1975 dan merupakan lulusan Akademi Militer (Akmil) tahun 1999.
+               Kainfolahtadam IX, Kolonel Inf Adi Sabarudin, S.Sos lahir pada 7 November 1975 dan merupakan lulusan Akademi Militer (Akmil) tahun 1999.
               </p>
-              <ul class="list-disc ml-10 mt-10">
+              <ul class="list-disc ml-10 mt-10 px-5" data-aos="fade-right">
                     <li>
                         
                         PAMA PUSSENIF
@@ -78,9 +82,40 @@
                 </ul>
             </div>
         </div>
+
+              {{-- berita start --}}
+      <div class="w-full lg:mt-[-100px]">
+        <div class="mx-4 my-24 lg:mx-0 lg:my-32">
+            
+            <div class=" text-white my-4">
+            <div class="px-4 bg-green-800  py-2 text-center uppercase">
+                BERITA
+            </div>
+        </div>
+        
+        <h1 class="text-xl lg:text-4xl font-bold">Berita Umum</h1>
+         <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-3">
+  @foreach (getNews() as $post ) 
+    <a href="{{ route('articles.show', $post->id) }}" class="block border rounded-2xl border-slate-200 px-3 py-1 no-underline text-inherit hover:bg-gray-50">
+      <div class="h-32 flex my-2 lg:justify-center">
+        <div class="w-1/2 h-52 overflow-hidden">
+          <img src="{{ asset('') }}/postImage/{{ $post->img_url }}" class="rounded-lg h-32 w-52 object-cover bg-green-500" width="100" height="100">
+        </div>
+        <div class="mx-3 w-1/2">
+          <p class="text-right text-xs text-slate-300">
+            <i class="fa-solid fa-calendar"></i> {{ $post->created_at }}
+          </p>
+          <p class="text-blue-500">{{ $post->title }}</p>
+        </div>
+      </div>
+    </a>
+  @endforeach
+</div>
+        </div>
+      </div>
+
         </div>
     </div>
-      {{-- tentang end --}}
 
 
 

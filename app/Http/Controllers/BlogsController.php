@@ -20,9 +20,8 @@ class BlogsController extends Controller
     public function index(){
         $visitor = DB::table('visitor_count')->first();
         $visitor = DB::table('visitor_count')->where('id',1)->update(['count' => $visitor->count+1]);
-
-        $postsPersits = PersitPost::where('status', 'published')->get();
-        $posts = Post::where('status', 'published')->get();
+        $postsPersits = PersitPost::where('status', 'published')->orderBy('id','DESC')->limit(4)->get();
+        $posts = Post::where('status', 'published')->orderBy('id','DESC')->limit(6)->get();
 
         return view('blogs.dashboard.index', [
             'postsPersits' => $postsPersits,
@@ -34,7 +33,6 @@ class BlogsController extends Controller
         $slugsFilter = "";
         $selectedCategories = $request->categories? $request->categories : [];
         $selectedSlugs = $request->slugs? $request->slugs : [];
-        $title = $request->title? $request->title : "";
         $data =  Post::where('status', 'published');
         if($request->categories){
             $catFilter = Post::where('status', 'published')->join('post_categories', 'post_categories.post_id', '=','posts.id')->whereIn('category_id',$request->categories)->pluck('post_id');
@@ -46,12 +44,9 @@ class BlogsController extends Controller
                 $data = $data->WhereIn('id', $slugsFilter);
 
         }
-        if($request->title){
-            $data = $data->Where('id', $title);
-        }
         
 
-        $posts = $data->paginate(10);
+        $posts = $data->orderBy('id','DESC')->paginate(9);
         $postsHot = Post::where('status', 'published')->orderBy('view','DESC')->paginate(7);
 
         $categories = Category::get();
@@ -60,7 +55,6 @@ class BlogsController extends Controller
             'posts' => $posts,
             'categories' => $categories,
             'slugs' => $slugs,
-            'title' => $title,
             'selectedCategories' => $selectedCategories,
             'selectedSlugs' => $selectedSlugs,
             'postsHot' => $postsHot
@@ -68,7 +62,7 @@ class BlogsController extends Controller
     }
     public function articlePersit(Request $request){     
 
-        $postsPersits = PersitPost::where('status', 'published')->paginate(10);
+        $postsPersits = PersitPost::where('status', 'published')->orderBy('view','DESC')->paginate(9);
         $postsPersitsHot = PersitPost::where('status', 'published')->orderBy('view','DESC')->paginate(7);
 
         return view('blogs.articlePersit.index', [
@@ -78,7 +72,7 @@ class BlogsController extends Controller
     }
     public function articleShow($id){
         
-        $posts = Post::where('status', 'published')->get();
+        $posts = Post::where('status', 'published')->orderBy('id','DESC')->paginate(5);
         $categories = Category::get();
         $slugs = Slug::get();
         $post = Post::where('id',$id)->first();
@@ -96,7 +90,7 @@ class BlogsController extends Controller
 
     public function articlePersitShow($id){
         
-        $postsPersits = PersitPost::where('status', 'published')->get();
+        $postsPersits = PersitPost::where('status', 'published')->orderBy('id','DESC')->paginate(5);
         $postsPersit = PersitPost::where('id',$id)->first();
         PersitPost::where('id',$id)->update(['view'=>($postsPersit->view + 1)]);
         if(!$postsPersit){
@@ -116,6 +110,7 @@ class BlogsController extends Controller
         return view('blogs.profiles.organitation.index',['pejabats' => $pejabats]);
     }
     public function contact(){
+        
         return view('blogs.contact.index');
     }
     public function feedback(Request $request){
@@ -131,24 +126,25 @@ class BlogsController extends Controller
         return redirect()->route('contacts')->with(['success' => 'Pesan Berhasil']);
     }
     public function images(){
-        $galleryImages = GalleryImage::select('gallery_images.*', 'posts.id as post_id')->leftJoin('posts', 'gallery_images.url', '=','posts.img_url')->paginate(10);
+        $galleryImages = GalleryImage::select('gallery_images.*', 'posts.id as post_id')->leftJoin('posts', 'gallery_images.url', '=','posts.img_url')->orderBy('id','DESC')->paginate(10);
         return view('blogs.gallery.pictures.index',['galleryImages' => $galleryImages]);
     }
     public function imagesPersit(){
-        $persitImages = PersitImage::paginate(10);
+        $persitImages = PersitImage::orderBy('id','DESC')->paginate(9);
         return view('blogs.articlePersit.image',['persitImages' => $persitImages]);
     }
     
     public function videos(){
-        $galleryVideos = GalleryVideo::paginate(10);
+        $galleryVideos = GalleryVideo::orderBy('id','DESC')->paginate(9);
         return view('blogs.gallery.videos.index', ['galleryVideos' => $galleryVideos]);
     }
 
     public function pejabat(){
-        $pejabats = Personel::where('position_id', 1)->get();
+        $pejabats = Personel::where('position_id', 1)->orderBy('period_start','ASC')->get();
         return view('blogs.pejabat.index',['pejabats' => $pejabats]);
     }
-
+    
+    
        public function sejarah(){
         return view('blogs.sejarah.index');
     }
@@ -165,6 +161,9 @@ class BlogsController extends Controller
     // PPID
        public function ppid(){
         return view('blogs.ppid.index');
+    }
+           public function maklumat(){
+        return view('blogs.ppid.maklumat');
     }
        public function hakKewajiban(){
         return view('blogs.ppid.hakkewajiban');
@@ -198,5 +197,20 @@ class BlogsController extends Controller
     }
     public function kosong(){
         return view('blogs.ppid.kosong');
+    }
+    public function operasionalPelayanan(){
+        return view('blogs.ppid.operasionalPelayanan');
+    }
+    public function alurProses(){
+        return view('blogs.ppid.alurProses');
+    }
+    public function informasiBerkala(){
+        return view('blogs.ppid.informasiBerkala');
+    }
+    public function informasiSertamerta(){
+        return view('blogs.ppid.informasiSertamerta');
+    }
+    public function informasiSetiaphari(){
+        return view('blogs.ppid.informasiSetiaphari');
     }
 }

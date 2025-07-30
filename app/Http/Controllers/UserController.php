@@ -63,7 +63,7 @@ class UserController extends Controller
         if(!checkPermission('update_user')){
            abort(403);
         }
-        if($request->password != ""){
+         if($request->password != ""){
         $data = [
             'nama' => $request->name,
             'email' => $request->email,

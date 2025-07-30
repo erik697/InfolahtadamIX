@@ -44,7 +44,7 @@
                 <select class="form-control" name="parent_id">
                     <option value="">-- pilih kategori --</option>
                     @foreach ($categoryProducts as $item)
-                        <option value="{{ $item->id }}" @if($categoryProduct->category_product_id === $item->id) selected @endif>{{ $item->title }}</option>
+                        <option value="{{ $item->id }}" @if($categoryProduct->category_product_id == $item->id) selected @endif>{{ $item->title }}</option>
                     @endforeach
                 </select>
                 </div>

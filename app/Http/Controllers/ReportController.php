@@ -52,6 +52,7 @@ class ReportController extends Controller
         if(!checkPermission('create_report')){
            abort(403);
         }
+try {
         Product::where('id', $request->product_id)->update(['status' => 'RR']);
         $product = Product::where('id', $request->product_id)->first();
 
@@ -71,6 +72,10 @@ class ReportController extends Controller
         'description'=>"Status Barang Berubah menjadi RR ".".Ket : ".$request->message,
         ];
         ProductLog::create($data2);
+} catch (\Exception $e) {
+
+    return $e->getMessage();
+}
 
         return redirect()->route('reports.index')->with(['success' => 'Data berhasil ditambahkan!']);
     }
@@ -125,7 +130,7 @@ class ReportController extends Controller
 
         $data = [
         'user_id'=> $report->user_id,
-        'status'=>$request->status,
+        'status'=>"Done",
         'img_url'=>$fileName,
         ];
         Report::where('id', $report->id)->update($data);

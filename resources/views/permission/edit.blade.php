@@ -25,7 +25,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form method="POST" action="{{ route('permissions.update',$permission->id) }}">
-              @method('put')
+                @method('put')
                 @csrf
               <div class="box-body">
                 <div class="form-group">

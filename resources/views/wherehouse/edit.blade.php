@@ -30,7 +30,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputName">Ruangan</label>
-                  <input type="text" value="{{ $wherehouse->title }}" class="form-control" name="title" id="exampleInputName" placeholder="Masukan Kategori" required>
+                  <input type="text" value="{{ $wherehouse->title }}" class="form-control" name="title" id="exampleInputName" placeholder="Masukan nama ruangan" required>
                   @error('title')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror 
@@ -42,7 +42,7 @@
                 <select class="form-control" name="user_id">
                     <option value="">-- pilih User --</option>
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}" @if($user->id === $wherehouse->user_id) selected @endif>{{ $user->name ." | ". $user->role->name }}</option>
+                        <option value="{{ $user->id }}" @if($user->id == $wherehouse->user_id) selected @endif>{{ $user->name ." | ". $user->role->name }}</option>
                     @endforeach
                 </select>
                 </div>

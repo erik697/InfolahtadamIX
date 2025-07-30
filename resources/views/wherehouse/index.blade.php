@@ -65,7 +65,7 @@
         <tfoot>
         <tr>
           <th>No</th>
-          <th>Ruangan</th>
+          <th>Gudang</th>
           <th>Pengelola</th>
           <th>Aksi</th>
         </tr>

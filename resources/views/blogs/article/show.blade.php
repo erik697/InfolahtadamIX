@@ -1,17 +1,17 @@
 @extends('blogs.template.main')
 @section('title', 'Infolahtadam IX')
 @section('content')
-<div class="min-h-full pt-32">
+<div class="min-h-full pt-20">
     <div class="mx-4 lg:mx-32">
 
         <div class=" bg-green-800 text-white my-4">
-            <div class="px-4 py-2  text-center uppercase">
+            <div class="px-4 py-2 text-center uppercase">
                 Berita > {{ $post->title }}
             </div>
         </div>
 
-        <div class="lg:flex w-full pb-32">
-            <div class="w-full lg:w-3/4">
+        <div class="lg:flex w-full pb-32"  data-aos="zoom-in">
+            <div class="w-full lg:w-3/4" data-aos="fade-up">
                 <div class="lg:px-10">
                     <h2 class="text-3xl font-semibold">{{ $post->title }}</h2>
                     <p class="text-slate-400 my-4 text-sm"><i class="fa-solid fa-eye"></i> View {{ $post->view + 1 }}</p>
@@ -26,7 +26,7 @@
                     <p class="my-10"><?php echo $post->content ?> </p>
                 </div>
             </div>
-            <div class="w-full lg:w-1/4">
+            <div class="w-full lg:w-1/4" data-aos="fade-up">
                 <div class="px-10 py-5">
                     @foreach ($posts as $post )    
        

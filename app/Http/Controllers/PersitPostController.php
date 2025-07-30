@@ -104,7 +104,7 @@ class PersitPostController extends Controller
         $req= $request;
         $file = $request->img_url;
              if($file){
-             $fileName = $request->img_url_old != "" ? $request->img_url_old : "ImagePersitPost".date('Y-m-d-H-i-s').".".$file->extension();
+             $fileName = "ImagePersitPost".date('Y-m-d-H-i-s').".".$file->extension();;
             $fileSize = $file->getSize();
             $fileExtention = $file->extension();
 		    $tujuan_upload = 'ImagePersitPost';
